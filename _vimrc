@@ -24,6 +24,20 @@ call plug#end()
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_theme='deus'
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.colnr = ' :'
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ' :'
+"let g:airline_symbols.maxlinenr = '☰ '
+"let g:airline_symbols.dirty='⚡'
 
 ""ALE
 "始终开启标志列与红色波浪线
@@ -139,7 +153,7 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileencoding=utf-8
 
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
-set guifont=Cascadia_Code:h12:cANSI
+set guifont=Cascadia_Code_PL:h12:cANSI
 "解决菜单乱码
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
@@ -148,7 +162,7 @@ language messages zh_CN.utf-8
 "设置中文帮助
 set helplang=cn
 "设置为双字宽显示，否则无法完整显示如:☆
-set ambiwidth=double
+"set ambiwidth=double
 
 set ts=4 "TabStop为4空格
 set sts=4 "编辑模式下的退格量
@@ -253,4 +267,3 @@ set completeopt=longest,menu
 "    else
 "        return a:char
 "    endif
-"endfunction
