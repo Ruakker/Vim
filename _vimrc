@@ -8,17 +8,25 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'nathanaelkane/vim-indent-guides'
 Plug 'luochen1990/rainbow'
 Plug 'joshdick/onedark.vim'
 Plug 'alpertuna/vim-header'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'preservim/nerdtree'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'kana/vim-operator-user'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'rhysd/vim-clang-format'
 call plug#end()
+
+""SmoothScroll
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 ""Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -56,10 +64,6 @@ let g:ale_c_cc_executable = 'gcc' "Or use 'clang'
 let g:ale_cpp_cc_executable = 'g++' "Or use 'clang++'
 let g:ale_c_cc_options = '-std=c11 -Wall'
 let g:ale_cpp_cc_options = '-std=c++11 -Wall -DDEBUG'
-
-
-""Indent Guides
-"let g:indent_guides_enable_on_vim_startup = 0
 
 ""Rainbow 配置
 let g:rainbow_active = 1
@@ -151,9 +155,8 @@ set encoding=utf-8
 set langmenu=zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileencoding=utf-8
-
-set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set guifont=Cascadia_Code_PL:h12:cANSI
+
 "解决菜单乱码
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
@@ -209,40 +212,21 @@ set history=1000 "历史记录总数量
 set laststatus=2 "总是显示状态栏
 set noshowmode "关闭状态栏下方状态提示
 
-map <F8> :call Run()<CR>
-map <F9> :call St()<CR>
+map <F8> :call CompileAndRun()<CR>
+map <F9> :call Run()<CR>
 
-func! Run()
+func! CompileAndRun()
 	exec "w"
 	exec "!g++ % -o %< -lm -Wall -std=c++14 -O2 -DDEBUG -Wl,--stack=134217728"
 	exec "!%<"
 endfunc
 
-func! St()
+func! Run()
 	exec ":!%<.exe"
 endfunc
 
-autocmd BufNewFile *.cpp exec ":call SetTitle()"
-
-func! SetTitle()
-	call setline(1, "/*")
-	call append(line("."), "\tFile Name: ".expand("%"))
-	call append(line(".")+1, "\tAuthor: Ruakker")
-	call append(line(".")+2, "\tMail: i@ruakker.cn") 
-	call append(line(".")+3, "\tCreated Time: ".strftime("%c")) 
-	call append(line(".")+4, "*/")
-	call append(line(".")+6, "")
-	autocmd BufNewFile * normal G
-endfunc
-
-"去空行
-nnoremap <F2> :g/^\s*$/d<CR>
-
-set linespace=0 "字符间插入的像素行数目
 set wildmenu "增强模式中的命令行自动完成操作
 set whichwrap+=<,>,h,l "允许backspace和光标键跨越行边界
-set fillchars=vert:\ ,stl:\ ,stlnc:\  "在被分割的窗口间显示空白，便于阅读
-set matchtime=1 "匹配括号高亮的时间（单位是十分之一秒）
 
 
 "打开文件类型检测, 加了这句才可以用智能补全
@@ -267,3 +251,4 @@ set completeopt=longest,menu
 "    else
 "        return a:char
 "    endif
+"endfunction
