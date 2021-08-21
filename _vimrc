@@ -134,6 +134,7 @@ let g:clang_format#style_options = {
 			\ "SpacesInParentheses" : "false",
 			\ "SpacesInSquareBrackets" : "false",
 			\ "BreakBeforeBraces" : "Attach",
+			\ "AllowShortBlocksOnASingleLine" : "true",
 			\ "ReflowComments" : "true",
 			\ "SortIncludes" : "true",
 			\ "Standard" : "Auto",
@@ -157,7 +158,7 @@ set foldlevel=1000 "设置缩进折叠级别
 if !has('gui_running') "设置 256 色
 	set t_Co=256
 endif
-        
+
 set encoding=utf-8
 set langmenu=zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
@@ -234,28 +235,31 @@ endfunc
 
 set wildmenu "增强模式中的命令行自动完成操作
 set whichwrap+=<,>,h,l "允许backspace和光标键跨越行边界
+set completeopt=longest,menu "打开文件类型检测, 加了这句才可以用智能补全
 
-
-"打开文件类型检测, 加了这句才可以用智能补全
-set completeopt=longest,menu
-
-"以下选项在安装插件后注释关闭
-"set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%] "下方状态栏
-
-"自动补全
-":inoremap ( ()<ESC>i
-":inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {<CR>}<ESC>O
-":inoremap } <c-r>=ClosePair('}')<CR>
-":inoremap [ []<ESC>i
-":inoremap ] <c-r>=ClosePair(']')<CR>
-":inoremap " ""<ESC>i
-":inoremap ' ''<ESC>i
-
-"function! ClosePair(char)
-"    if getline('.')[col('.') - 1] == a:char
-"        return "\<Right>"
-"    else
-"        return a:char
-"    endif
-"endfunction
+autocmd BufNewFile *.cpp, exec ":call SetTitle()"
+func SetTitle()
+	if &filetype == 'cpp'
+		call append(line(".")   , "#include <bits/stdc++.h>")
+		call append(line(".")+1 , "#define ll long long")
+		call append(line(".")+2 , "#define inf 0x3f3f3f3f")
+		call append(line(".")+3 , "#define fre(fileName) freopen(#fileName \".in\", \"r\", stdin), freopen(#fileName \".out\", \"w\", stdout)")
+		call append(line(".")+4 , "#define FastIO std::ios::sync_with_stdio(false), std::cin.tie(nullptr)")
+		call append(line(".")+5 , "using std::cerr;")
+		call append(line(".")+6 , "using std::cin;")
+		call append(line(".")+7 , "using std::cout;")
+		call append(line(".")+8 , "#define endl '\\n'")
+		call append(line(".")+9 , "bool MEMST;")
+		call append(line(".")+10, "")
+		call append(line(".")+11, "bool MEMED;")
+		call append(line(".")+12, "signed main() {")
+		call append(line(".")+13, "\tFastIO;")
+		call append(line(".")+14, "#ifdef DEBUG")
+		call append(line(".")+15, "\tcerr << \"Memory used: \" << abs(&MEMST - &MEMED) / 1048576. << endl;")
+		call append(line(".")+16, "#endif")
+		call append(line(".")+17, "\t")
+		call append(line(".")+18, "\tcout.flush();")
+		call append(line(".")+19, "\treturn 0;")
+		call append(line(".")+20, "}")
+	endif
+endfunc
