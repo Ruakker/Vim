@@ -8,7 +8,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 Plug 'luochen1990/rainbow'
 Plug 'joshdick/onedark.vim'
 Plug 'alpertuna/vim-header'
@@ -45,7 +45,7 @@ let g:ale_cpp_cc_options = '-std=c++11 -Wall -DDEBUG'
 
 
 ""Indent Guides
-let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_enable_on_vim_startup = 0
 
 ""Rainbow 配置
 let g:rainbow_active = 1
@@ -157,7 +157,7 @@ set noexpandtab "不让 tab 转换为空格
 
 "colorscheme evening
 set list "显示空白字符
-set listchars=tab:>-,trail:.
+set listchars=tab:\|-,trail:.
 highlight WhitespaceEOL ctermbg=red guibg=red 
 match WhitespaceEOL /\s\+$/
 
