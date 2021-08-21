@@ -6,12 +6,14 @@
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'w0rp/ale'
-Plug 'jiangmiao/auto-pairs'
 Plug 'luochen1990/rainbow'
-Plug 'joshdick/onedark.vim'
-Plug 'alpertuna/vim-header'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'joshdick/onedark.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+
+Plug 'w0rp/ale'
+Plug 'alpertuna/vim-header'
+Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/nerdtree'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'tpope/vim-surround'
@@ -31,7 +33,8 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 ""Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_theme='deus'
+"let g:airline_theme='deus'
+let g:airline_theme = 'material'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
@@ -90,9 +93,13 @@ let g:rainbow_conf = {
 \	}
 \}
 
-""onedark theme"
-colorscheme onedark
-let g:onedark_hide_endofbuffer = 1
+""theme
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'defalt'
+colorscheme material
+
+"colorscheme onedark
+"let g:onedark_hide_endofbuffer = 1
 
 ""Vim Header
 let g:header_field_author = 'Ruakker'
