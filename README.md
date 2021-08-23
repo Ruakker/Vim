@@ -18,10 +18,21 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 ```
 
-in Powershell to install vim-plug in Neovim
+in Powershell to install vim-plug in Neovim.
 
-To install vim-plug in Gvim, just put the `plug.vim` into `autoload` dictionary.
+And the Gvim:
 
-## The location of the init.vim
+```powershell
+iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
+    ni $HOME/vimfiles/autoload/plug.vim -Force
+```
+
+## The location of the init.vim and \_vimrc
+
+Neovim:
 
 `~/.config/nvim/init.vim`
+
+Vim:
+
+`~/_vimrc`
