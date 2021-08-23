@@ -14,6 +14,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 
 Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/vim-terminal-help'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
