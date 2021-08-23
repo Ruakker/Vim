@@ -1,28 +1,93 @@
-" File              : _vimrc
-" Author            : Ruakker <i@ruakker.cn>
-" Date              : 2021/08/21
-" Last Modified Date: 2021/08/21
 """"My Plugin""""
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'luochen1990/rainbow'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'joshdick/onedark.vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'terryma/vim-smooth-scroll'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'machakann/vim-highlightedyank'
+
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 Plug 'w0rp/ale'
-Plug 'alpertuna/vim-header'
+Plug 'skywind3000/asyncrun.vim'
+
 Plug 'jiangmiao/auto-pairs'
-Plug 'preservim/nerdtree'
-Plug 'terryma/vim-smooth-scroll'
-Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
+Plug 'kien/ctrlp.vim'
+Plug 'pseewald/vim-anyfold'
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
 
 Plug 'kana/vim-operator-user'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'rhysd/vim-clang-format'
+
+Plug 'mbbill/undotree'
 call plug#end()
+
+""AsyncRun
+" open quickfix window automatically when AsyncRun is executed
+" set the quickfix window 6 lines height.
+let g:asyncrun_open = 10
+noremap <silent> <F8> :AsyncRun -save=1 g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" -lm -Wall -std=c++14 -O2 -DDEBUG -Wl,--stack=134217728<cr>
+" use the terminal inside vim:
+noremap <silent> <F9> :cclose<cr>:AsyncRun -mode=term -pos=bottom -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<cr>
+" or use the external terminal:
+" noremap <silent> <F9> :AsyncRun -mode=term -pos=external -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<cr>
+" F10 to toggle quickfix window
+nnoremap <F10> :call asyncrun#quickfix_toggle(10)<cr>
+
+
+""EnhancedHighlight
+let g:cpp_concepts_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_posix_standard = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_scope_highlight = 1
+
+""Highlight Yank
+let g:highlightedyank_highlight_duration = 100
+
+""Makrdown
+let g:vim_markdown_math = 1 "Katex
+let g:vim_markdown_strikethrough = 1 "删除线
+let g:vim_markdown_no_extensions_in_markdown = 1 "打开文件而不是添加链接
+let g:vim_markdown_folding_disabled = 1 "取消折叠
+
+""UndoTree
+nnoremap <F6> :UndotreeToggle<CR>:UndotreeFocus<CR>
+if has("persistent_undo")
+   let target_path = expand('~/.undodir')
+
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
+if !exists('g:undotree_WindowLayout')
+    let g:undotree_WindowLayout = 4
+endif
+
+""CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'cra'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 
 ""SmoothScroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
@@ -30,16 +95,18 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
+""commentary
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
 ""Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-"let g:airline_theme='deus'
 let g:airline_theme = 'material'
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
-"let g:airline_left_sep = ''
+" let g:airline_left_sep = ''
 "let g:airline_left_alt_sep = ''
 "let g:airline_right_sep = ''
 "let g:airline_right_alt_sep = ''
@@ -57,6 +124,7 @@ let g:ale_set_highlights = 1
 "自定义 error 和 warning 图标
 let g:ale_sign_error = '!>'
 let g:ale_sign_warning = '?>'
+let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_format = '[%severity%] %s' "显示Linter名称,出错或警告等相关信息
 "避免 Clang 与 GCC 冲突
 let g:ale_linters = {
@@ -97,16 +165,6 @@ let g:rainbow_conf = {
 let g:material_terminal_italics = 1
 let g:material_theme_style = 'defalt'
 colorscheme material
-
-"colorscheme onedark
-"let g:onedark_hide_endofbuffer = 1
-
-""Vim Header
-let g:header_field_author = 'Ruakker'
-let g:header_field_author_email = 'i@ruakker.cn'
-let g:header_field_timestamp_format = '%Y/%m/%d'
-let g:header_field_modified_by = 0
-map <F4> :AddHeader<CR>
 
 ""vim-cpp-enhanced-highlight
 let g:cpp_class_scope_highlight = 1
@@ -153,8 +211,14 @@ set hlsearch "高亮搜索内容
 set incsearch "动态显示匹配内容
 set linebreak "自动换行
 set scrolloff=3 "滚动时光标离最上下两行空行数
-set fdm=indent "设置折叠方式为缩进
-set foldlevel=1000 "设置缩进折叠级别
+set fdm=syntax "设置折叠方式为缩进
+
+"Netrw
+let g:netrw_liststyle = 3 "tree 模式显示风格
+let g:netrw_browse_split = 3 "打开窗口处于新 tab
+let g:netrw_banner = 0 "隐藏上方帮助
+let g:netrw_winsize = 20 "宽度为 20%
+
 if !has('gui_running') "设置 256 色
 	set t_Co=256
 endif
@@ -190,7 +254,6 @@ set nocompatible "关掉乱七八糟的东西
 set nowritebackup
 set noswapfile "无交换文件
 set nobackup "无自动备份
-set noundofile "无 .un~ 文件
 
 filetype on "侦测文件类型
 filetype plugin on "载入文件类型插件
@@ -219,19 +282,8 @@ set guioptions-=m "隐藏菜单栏
 set history=1000 "历史记录总数量
 set laststatus=2 "总是显示状态栏
 set noshowmode "关闭状态栏下方状态提示
-
-map <F8> :call CompileAndRun()<CR>
-map <F9> :call Run()<CR>
-
-func! CompileAndRun()
-	exec "w"
-	exec "!g++ % -o %< -lm -Wall -std=c++14 -O2 -DDEBUG -Wl,--stack=134217728"
-	exec "!%<"
-endfunc
-
-func! Run()
-	exec ":!%<.exe"
-endfunc
+autocmd Filetype * AnyFoldActivate               " activate for all filetypes
+set foldlevel=99 " Open all folds
 
 set wildmenu "增强模式中的命令行自动完成操作
 set whichwrap+=<,>,h,l "允许backspace和光标键跨越行边界
@@ -240,26 +292,32 @@ set completeopt=longest,menu "打开文件类型检测, 加了这句才可以用
 autocmd BufNewFile *.cpp, exec ":call SetTitle()"
 func SetTitle()
 	if &filetype == 'cpp'
-		call append(line(".")   , "#include <bits/stdc++.h>")
-		call append(line(".")+1 , "#define ll long long")
-		call append(line(".")+2 , "#define inf 0x3f3f3f3f")
-		call append(line(".")+3 , "#define fre(fileName) freopen(#fileName \".in\", \"r\", stdin), freopen(#fileName \".out\", \"w\", stdout)")
-		call append(line(".")+4 , "#define FastIO std::ios::sync_with_stdio(false), std::cin.tie(nullptr)")
-		call append(line(".")+5 , "using std::cerr;")
-		call append(line(".")+6 , "using std::cin;")
-		call append(line(".")+7 , "using std::cout;")
-		call append(line(".")+8 , "#define endl '\\n'")
-		call append(line(".")+9 , "bool MEMST;")
-		call append(line(".")+10, "")
-		call append(line(".")+11, "bool MEMED;")
-		call append(line(".")+12, "signed main() {")
-		call append(line(".")+13, "\tFastIO;")
-		call append(line(".")+14, "#ifdef DEBUG")
-		call append(line(".")+15, "\tcerr << \"Memory used: \" << abs(&MEMST - &MEMED) / 1048576. << endl;")
-		call append(line(".")+16, "#endif")
-		call append(line(".")+17, "\t")
-		call append(line(".")+18, "\tcout.flush();")
-		call append(line(".")+19, "\treturn 0;")
-		call append(line(".")+20, "}")
+		call append(0 , '/**')
+		call append(1 , ' * File              : '.expand("%"))
+		call append(2 , ' * Author            : Ruakker <i@ruakker.cn>')
+		call append(3 , ' * Date              : '.strftime("%Y-%m-%d %H:%M:%S"))
+		call append(4 , ' */')
+		call append(5 , '')
+		call append(6 , '#include <bits/stdc++.h>')
+		call append(7 , '#define ll long long')
+		call append(8 , '#define inf 0x3f3f3f3f')
+		call append(9 , '#define fre(fileName) freopen(#fileName ".in", "r", stdin), freopen(#fileName ".out", "w", stdout)')
+		call append(10, '#define FastIO std::ios::sync_with_stdio(false), std::cin.tie(nullptr)')
+		call append(11, 'using std::cerr;')
+		call append(12, 'using std::cin;')
+		call append(13, 'using std::cout;')
+		call append(14, '#define endl ''\n''')
+		call append(15, 'bool MEMST;')
+		call append(16, '')
+		call append(17, 'bool MEMED;')
+		call append(18, 'signed main() {')
+		call append(19, '	FastIO;')
+		call append(20, '#ifdef DEBUG')
+		call append(21, '	cerr << "Memory used: " << abs(&MEMST - &MEMED) / 1048576. << endl;')
+		call append(22, '#endif')
+		call append(23, '	')
+		call append(24, '	cout.flush();')
+		call append(25, '	return 0;')
+		call append(26, '}')
 	endif
 endfunc
