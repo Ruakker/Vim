@@ -30,7 +30,6 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'rhysd/vim-clang-format'
 
 Plug 'mbbill/undotree'
-Plug 'wfxr/minimap.vim'
 call plug#end()
 
 ""AsyncRun
@@ -93,11 +92,6 @@ let g:ctrlp_custom_ignore = {
 
 ""commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
-
-""minimap
-let g:minimap_width = 10
-let g:minimap_auto_start = 1
-let g:minimap_auto_start_win_enter = 1
 
 ""Airline
 let g:airline#extensions#tabline#enabled = 1
