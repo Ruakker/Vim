@@ -207,12 +207,18 @@ set autoread "自动加载
 set autoindent "自动换行
 set smartindent "同上
 set cindent "同上
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
 set cursorline "设置光标行高亮
 set hlsearch "高亮搜索内容
 set incsearch "动态显示匹配内容
 set linebreak "自动换行
 set scrolloff=3 "滚动时光标离最上下两行空行数
 set fdm=syntax "设置折叠方式为语法
+set list
+set listchars=tab:\|-,trail:.
 
 "Neovide
 let g:neovide_cursor_vfx_mode = "railgun"
