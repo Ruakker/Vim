@@ -1,24 +1,38 @@
 # Vim
-My Vim Config
+My [N]Vim Config
 
 ~~因为没有梯子的时候访问不了 private gist，所以只能丢一个在 github 的公开仓库里~~
 
 ## Requirements
 
-- git
-- nodejs
+- Git
+- NodeJS
 - LLVM
+- CascadiaCode[PL] / FiraCode
+- Scoop
 
 ## Install
 
-For Windows,just run
+> In Powershell
+
+### Scoop & Code-Minimap
+
+```powershell
+Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+
+scoop bucket add extras
+
+scoop install code-minimap
+```
+
+### Plug.Vim
+
+Neovim
 
 ```powershell
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
     ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
 ```
-
-in Powershell to install vim-plug in Neovim.
 
 And the Gvim:
 
@@ -31,7 +45,7 @@ iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
 
 Neovim:
 
-`~/.config/nvim/init.vim`
+`~/AppData/Local/nvim/init.vim`
 
 Vim:
 
