@@ -37,8 +37,9 @@ call plug#end()
 " set the quickfix window 6 lines height.
 let g:asyncrun_open = 10
 noremap <silent> <F8> :AsyncRun -save=1 g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" -lm -Wall -std=c++14 -O2 -DDEBUG -Wl,--stack=134217728<cr>
+noremap <silent> <F9> :AsyncRun -save=1 g++ -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" -lm -Wall -std=c++14 -O2 -Wl,--stack=134217728<cr>
 " use the terminal inside vim:
-noremap <silent> <F9> :cclose<cr>:AsyncRun -mode=term -pos=bottom -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<cr>
+" noremap <silent> <F9> :cclose<cr>:AsyncRun -mode=term -pos=bottom -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<cr>
 " use the external terminal:
 noremap <silent> <F10> :cclose<cr>:AsyncRun -mode=term -pos=external -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<cr>
 " F10 to toggle quickfix window
