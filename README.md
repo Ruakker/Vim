@@ -21,8 +21,6 @@ My [N]Vim Config
 Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
 
 scoop bucket add extras
-
-scoop install code-minimap
 ```
 
 ### Plug.Vim
