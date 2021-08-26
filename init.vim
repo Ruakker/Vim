@@ -6,6 +6,7 @@ Plug 'luochen1990/rainbow'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'machakann/vim-highlightedyank'
+Plug 'mhinz/vim-startify'
 
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -56,6 +57,9 @@ let g:cpp_class_scope_highlight = 1
 
 ""Highlight Yank
 let g:highlightedyank_highlight_duration = 100
+
+""Startify
+let g:startify_padding_left = 60
 
 ""Makrdown
 let g:vim_markdown_math = 1 "Katex
@@ -340,25 +344,24 @@ func SetTitle()
 		call append(4 , ' */')
 		call append(5 , '')
 		call append(6 , '#include <bits/stdc++.h>')
-		call append(7 , '#define ll long long')
-		call append(8 , '#define inf 0x3f3f3f3f')
-		call append(9 , '#define fre(fileName) freopen(#fileName ".in", "r", stdin), freopen(#fileName ".out", "w", stdout)')
-		call append(10, '#define FastIO std::ios::sync_with_stdio(false), std::cin.tie(nullptr)')
-		call append(11, 'using std::cerr;')
-		call append(12, 'using std::cin;')
-		call append(13, 'using std::cout;')
-		call append(14, '#define endl ''\n''')
-		call append(15, 'bool MEMST;')
-		call append(16, '')
-		call append(17, 'bool MEMED;')
-		call append(18, 'signed main() {')
-		call append(19, '	FastIO;')
-		call append(20, '#ifdef DEBUG')
-		call append(21, '	cerr << "Memory used: " << abs(&MEMST - &MEMED) / 1048576. << endl;')
-		call append(22, '#endif')
-		call append(23, '	')
-		call append(24, '	cout.flush();')
-		call append(25, '	return 0;')
-		call append(26, '}')
+		call append(7 , '#define inf 0x3f3f3f3f')
+		call append(8 , '#define fre(fileName) freopen(#fileName ".in", "r", stdin), freopen(#fileName ".out", "w", stdout)')
+		call append(9 , '#define FastIO std::ios::sync_with_stdio(false), std::cin.tie(nullptr)')
+		call append(10, 'using std::cerr;')
+		call append(11, 'using std::cin;')
+		call append(12, 'using std::cout;')
+		call append(13, '#define endl ''\n''')
+		call append(14, 'bool MEMST;')
+		call append(15, '')
+		call append(16, 'bool MEMED;')
+		call append(17, 'signed main() {')
+		call append(18, '	FastIO;')
+		call append(19, '#ifdef DEBUG')
+		call append(20, '	cerr << "Memory used: " << abs(&MEMST - &MEMED) / 1048576. << endl;')
+		call append(21, '#endif')
+		call append(22, '	')
+		call append(23, '	cout.flush();')
+		call append(24, '	return 0;')
+		call append(25, '}')
 	endif
 endfunc
