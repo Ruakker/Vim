@@ -1,6 +1,6 @@
 # Vim
 My [N]Vim Config
-
+[![Sync to Gitee](https://github.com/Ruakker/Vim/actions/workflows/sync-to-gitee.yml/badge.svg)](https://github.com/Ruakker/Vim/actions/workflows/sync-to-gitee.yml)
 ~~因为没有梯子的时候访问不了 private gist，所以只能丢一个在 github 的公开仓库里~~
 
 ## Requirements
