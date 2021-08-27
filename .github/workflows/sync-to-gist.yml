@@ -14,6 +14,6 @@ jobs:
         with:
           auth: ${{ secrets.GIST_TOKEN }}
           gist_url: https://gist.github.com/Ruakker/43bd424da78addbd612addac8c830de8
-#           gist_title: My Vim Config
+          gist_title: init.vim
           gist_description: Vim Config for Me!
-#           github_file: init.vim
+          github_file: init.vim
