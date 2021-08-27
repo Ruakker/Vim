@@ -1,4 +1,9 @@
 """"My Plugin""""
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -6,7 +11,8 @@ Plug 'luochen1990/rainbow'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'machakann/vim-highlightedyank'
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify', {'branch': 'center'}
 
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -59,7 +65,8 @@ let g:cpp_class_scope_highlight = 1
 let g:highlightedyank_highlight_duration = 100
 
 ""Startify
-let g:startify_padding_left = 60
+" let g:startify_padding_left = 60
+let g:startify_center = 50
 
 ""Makrdown
 let g:vim_markdown_math = 1 "Katex
@@ -287,7 +294,7 @@ set encoding=utf-8
 set langmenu=zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileencoding=utf-8
-set guifont=Cascadia\ Code\ PL:h12:cANSI,Consolas:h12:cANSI
+set guifont=Cascadia\ Code:h12:cANSI,Consolas:h12:cANSI
 " set guifont=Fira\ Code:h12:cANSI,Consolas:h12:cANSI
 
 "解决菜单乱码
@@ -297,7 +304,7 @@ source $VIMRUNTIME/menu.vim
 language messages zh_CN.utf-8
 set nocompatible "关掉乱七八糟的东西
 set nowritebackup
-set noswapfile "无交换文件
+set swapfile "备份
 set nobackup "无自动备份
 
 filetype on "侦测文件类型
@@ -350,18 +357,22 @@ func SetTitle()
 		call append(10, 'using std::cerr;')
 		call append(11, 'using std::cin;')
 		call append(12, 'using std::cout;')
-		call append(13, '#define endl ''\n''')
-		call append(14, 'bool MEMST;')
-		call append(15, '')
-		call append(16, 'bool MEMED;')
-		call append(17, 'signed main() {')
-		call append(18, '	FastIO;')
-		call append(19, '#ifdef DEBUG')
-		call append(20, '	cerr << "Memory used: " << abs(&MEMST - &MEMED) / 1048576. << endl;')
-		call append(21, '#endif')
-		call append(22, '	')
-		call append(23, '	cout.flush();')
-		call append(24, '	return 0;')
-		call append(25, '}')
+		call append(13, '#ifdef DEBUG')
+		call append(14, 'using std::endl;')
+		call append(15, '#else')
+		call append(16, '#	define endl ''\n''')
+		call append(17, '#endif')
+		call append(18, 'bool MEMST;')
+		call append(19, '')
+		call append(20, 'bool MEMED;')
+		call append(21, 'signed main() {')
+		call append(22, '	FastIO;')
+		call append(23, '#ifdef DEBUG')
+		call append(24, '	cerr << "Memory used: " << abs(&MEMST - &MEMED) / 1048576. << endl;')
+		call append(25, '#endif')
+		call append(26, '	')
+		call append(27, '	cout.flush();')
+		call append(28, '	return 0;')
+		call append(29, '}')
 	endif
 endfunc
