@@ -21,6 +21,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/vim-terminal-help'
+Plug 'voldikss/vim-translator'
 
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
@@ -38,6 +39,15 @@ Plug 'rhysd/vim-clang-format'
 
 Plug 'mbbill/undotree'
 call plug#end()
+
+""Trancelate
+
+" Echo translation in the cmdline
+nmap <silent> <Leader>t <Plug>Translate
+vmap <silent> <Leader>t <Plug>TranslateV
+" Display translation in a window
+nmap <silent> <Leader>w <Plug>TranslateW
+vmap <silent> <Leader>w <Plug>TranslateWV
 
 ""AsyncRun
 " open quickfix window automatically when AsyncRun is executed
