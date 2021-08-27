@@ -3,7 +3,7 @@ My [N]Vim Config
 
 ~~因为没有梯子的时候访问不了 private gist，所以只能丢一个在 github 的公开仓库里~~
 
-[![Sync to Gitee](https://github.com/Ruakker/Vim/actions/workflows/sync-to-gitee.yml/badge.svg)](https://github.com/Ruakker/Vim/actions/workflows/sync-to-gitee.yml)
+[![Sync to Gitee](https://github.com/Ruakker/Vim/actions/workflows/sync-to-gitee.yml/badge.svg)](https://github.com/Ruakker/Vim/actions/workflows/sync-to-gitee.yml)[![Sync to Gist](https://github.com/Ruakker/Vim/actions/workflows/sync-to-gist.yml/badge.svg)](https://github.com/Ruakker/Vim/actions/workflows/sync-to-gist.yml)
 
 ## Requirements
 
