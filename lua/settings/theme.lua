@@ -10,5 +10,6 @@ end
 -- Load the colorscheme
 
 vim.g.gruvbox_material_disable_italic_comment = 1
-vim.g.gruvbox_material_sign_column_background = 'none'
+vim.g.gruvbox_material_enable_italic = 0
+vim.g.gruvbox_material_show_eob = 0
 vim.cmd 'color gruvbox-material'

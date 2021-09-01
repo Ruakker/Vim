@@ -29,7 +29,6 @@ end
 
 return require('packer').startup {
   function(use)
-    -- Packer can manage itself as an optional plugin
     use { 'wbthomason/packer.nvim', opt = true }
 
     -- Dependencies
@@ -41,35 +40,34 @@ return require('packer').startup {
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'p00f/nvim-ts-rainbow'
-
-    -- LSP & Autocomplete
-    -- use { "hrsh7th/nvim-cmp", requires = { "hrsh7th/vim-vsnip", "hrsh7th/cmp-buffer" } }
+    use 'nvim-telescope/telescope.nvim'
 
     -- Motions
     use 'nacro90/numb.nvim'
-    use 'easymotion/vim-easymotion'
     use 'kevinhwang91/nvim-hlslens'
+    use { 'phaazon/hop.nvim', as = 'hop',
+      config = function()
+        require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      end
+    }
 
     -- UI
-    use 'romgrk/barbar.nvim'
     use 'hoob3rt/lualine.nvim'
-    use 'kyazdani42/nvim-tree.lua'
+    use 'kdheepak/tabline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use 'luochen1990/rainbow'
+    use 'glepnir/dashboard-nvim'
 
     -- Theme
     use 'sainnhe/gruvbox-material'
 
     -- General plugins
-    use 'mhinz/vim-startify'
     use 'b3nj5m1n/kommentary'
     use 'jeffkreeftmeijer/vim-numbertoggle'
     use 'steelsojka/pears.nvim'
     use 'w0rp/ale'
 
     use 'skywind3000/asyncrun.vim'
-    use 'kien/ctrlp.vim'
-    use 'pseewald/vim-anyfold'
     use 'dstein64/vim-startuptime'
     use { "blackCauldron7/surround.nvim", config = function() require "surround".setup {} end }
     use 'rhysd/vim-clang-format'

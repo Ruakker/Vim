@@ -46,7 +46,7 @@ opt('o', 'smartindent', true)            -- Smart autoindenting when starting a 
 opt('o', 'expandtab', false)             -- Converts tabs to spaces
 opt('o', 'shiftwidth', 4)                -- Change the number of space characters inserted for indentation
 opt('o', 'shiftround', true)             -- Round indent to multiple of 'shiftwidth'
-opt('o', 'foldmethod', 'syntax')         -- Folding used for the current window
+opt('o', 'foldmethod', 'manual')         -- Folding used for the current window
 opt('o', 'scrolloff', 3)                 -- Minimal number of screen lines to keep above and below the cursor
 opt('o', 'sidescrolloff', 15)            -- Minimal number of screen columns to keep to the left and right of the cursor
 opt('o', 'sidescroll', 5)                -- Minimal number of columns to scroll horizontally
