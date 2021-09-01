@@ -1,0 +1,37 @@
+vim.cmd[[
+autocmd BufNewFile *.cpp, exec ":call SetTitle()"
+func SetTitle()
+	if &filetype == 'cpp'
+		call append(0 , '/**')
+		call append(1 , ' * File              : '.expand("%"))
+		call append(2 , ' * Author            : Ruakker <i@ruakker.cn>')
+		call append(3 , ' * Date              : '.strftime("%Y-%m-%d %H:%M:%S"))
+		call append(4 , ' */')
+		call append(5 , '')
+		call append(6 , '#include <bits/stdc++.h>')
+		call append(7 , '#define inf 0x3f3f3f3f')
+		call append(8 , '#define fre(fileName) freopen(#fileName ".in", "r", stdin), freopen(#fileName ".out", "w", stdout)')
+		call append(9 , '#define FastIO std::ios::sync_with_stdio(false), std::cin.tie(nullptr)')
+		call append(10, 'using std::cerr;')
+		call append(11, 'using std::cin;')
+		call append(12, 'using std::cout;')
+		call append(13, '#ifdef DEBUG')
+		call append(14, 'using std::endl;')
+		call append(15, '#else')
+		call append(16, '#	define endl ''\n''')
+		call append(17, '#endif')
+		call append(18, 'bool MEMST;')
+		call append(19, '')
+		call append(20, 'bool MEMED;')
+		call append(21, 'signed main() {')
+		call append(22, '	FastIO;')
+		call append(23, '#ifdef DEBUG')
+		call append(24, '	cerr << "Memory used: " << abs(&MEMST - &MEMED) / 1048576. << endl;')
+		call append(25, '#endif')
+		call append(26, '	')
+		call append(27, '	cout.flush();')
+		call append(28, '	return 0;')
+		call append(29, '}')
+	endif
+endfunc
+]]
