@@ -55,7 +55,6 @@ return require('packer').startup {
     use 'hoob3rt/lualine.nvim'
     use 'kdheepak/tabline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
-    use 'luochen1990/rainbow'
     use 'glepnir/dashboard-nvim'
 
     -- Theme
@@ -69,7 +68,9 @@ return require('packer').startup {
 
     use 'skywind3000/asyncrun.vim'
     use 'dstein64/vim-startuptime'
-    use { "blackCauldron7/surround.nvim", config = function() require "surround".setup {} end }
+    use 'tpope/vim-surround'
+    use 'tpope/vim-repeat'
     use 'rhysd/vim-clang-format'
     use 'mbbill/undotree'
-end }
+  end
+}
