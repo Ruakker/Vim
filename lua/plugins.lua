@@ -55,7 +55,7 @@ return require('packer').startup {
     use 'hoob3rt/lualine.nvim'
     use 'kdheepak/tabline.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
-    use 'glepnir/dashboard-nvim'
+    use 'rmagatti/auto-session'
 
     -- Theme
     use 'sainnhe/gruvbox-material'
@@ -63,7 +63,7 @@ return require('packer').startup {
     -- General plugins
     use 'b3nj5m1n/kommentary'
     use 'jeffkreeftmeijer/vim-numbertoggle'
-    use 'steelsojka/pears.nvim'
+    use 'windwp/nvim-autopairs'
     use 'w0rp/ale'
 
     use 'skywind3000/asyncrun.vim'

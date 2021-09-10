@@ -50,6 +50,8 @@ opt('o', 'foldmethod', 'manual')         -- Folding used for the current window
 opt('o', 'scrolloff', 3)                 -- Minimal number of screen lines to keep above and below the cursor
 opt('o', 'sidescrolloff', 15)            -- Minimal number of screen columns to keep to the left and right of the cursor
 opt('o', 'sidescroll', 5)                -- Minimal number of columns to scroll horizontally
+opt('o', 'sessionoptions', 'blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal')
+
 opt('o', 'guifont', 'FiraCode NF:h12:cANSI')
 
 -- Option settings for diff mode
