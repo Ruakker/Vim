@@ -16,13 +16,14 @@ opt('wo', 'linebreak', true)             -- Wrap long lines at a character in 'b
 opt('wo', 'foldenable', false)           -- All folds are open
 opt('o', 'showmode', false)              -- Hide current mode like -- INSERT --
 opt('o', 'smartcase', true)              -- Ignore the case of normal letters
-opt('o', 'ignorecase', true)             -- Ignore case when pattern contains lowercase
+opt('o', 'ignorecase', true)
 opt('o', 'mouse', 'a')                   -- Enable the mouse
 opt('o', 'showmatch', true)              -- Briefly jump to the matching bracket
 opt('o', 'showtabline', 2)               -- Always show tabs
 opt('o', 'tabstop', 4)                   -- Insert 4 spaces for a tab
 opt('o', 'softtabstop', 4)
-opt('o', 'background', 'dark')           -- Tells vim that the background is dark
+opt('o', 'background', 'dark')
+opt('o', 'autochdir', true)
 opt('o', 'termguicolors', true)          -- Check if terminal has 24-bit color support
 opt('o', 'list', true)                   -- Activate 'list' mode
 opt('o', 'lazyredraw', true)             -- Screen will not be redrawn while executing macros and other commands
