@@ -18,6 +18,7 @@ require('nvim-treesitter.configs').setup {
 local ts_conds = require('nvim-autopairs.ts-conds')
 
 --Mapping <CR>
+
 local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
 
