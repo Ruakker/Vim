@@ -63,7 +63,11 @@ return require('packer').startup {
     -- General plugins
     use 'b3nj5m1n/kommentary'
     use 'jeffkreeftmeijer/vim-numbertoggle'
-    use 'windwp/nvim-autopairs'
+    use { 'windwp/nvim-autopairs',
+      config = function()
+        require('nvim-autopairs').setup{}
+      end
+    }
     use 'w0rp/ale'
 
     use 'skywind3000/asyncrun.vim'
